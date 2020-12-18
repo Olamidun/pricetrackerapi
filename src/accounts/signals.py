@@ -15,10 +15,3 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 for user in Auth.objects.all():
     Token.objects.get_or_create(user=user)
-
-# def create_hash(sender, instance=None, *args, **kwargs):
-#     passwd = instance.password
-#     instance.set_password(passwd)
-
-
-# pre_save.connect(create_hash, sender=settings.AUTH_USER_MODEL)
