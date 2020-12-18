@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Auth
+from django.db.models.signals import pre_save
 
 class RegisterSerializer(serializers.ModelSerializer):
     # password = serializers.CharField(max_length=60, write_only=True, min_length=8)
@@ -26,5 +27,12 @@ class RegisterSerializer(serializers.ModelSerializer):
                 phone_number = validated_data['phone_number']
             )
             return user
+
+        # function to hash password
+        def create_hash(sender, instance=None, *args, **kwargs):
+            passwd = instance.password
+            instance.set_password(passwd)
+
+        pre_save.connect(create_hash, sender=Auth)
 
             
