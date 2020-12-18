@@ -3,12 +3,12 @@ from .models import Auth
 from django.db.models.signals import pre_save
 
 class RegisterSerializer(serializers.ModelSerializer):
-    # password = serializers.CharField(max_length=60, write_only=True, min_length=8)
+    password = serializers.CharField(max_length=60, write_only=True, min_length=8)
     
     class Meta:
         model = Auth
         fields = ['username', 'email', 'phone_number', 'password']
-        extra_kwargs = {'password': {'write_only': True}}
+        
 
         # def validate(self, data):
         #     email = data['email']
