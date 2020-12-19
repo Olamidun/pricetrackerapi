@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'tracker.apps.TrackerConfig',
 
     # installed apps
     'rest_framework',
@@ -57,6 +58,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ptracker.urls'
+
+CELERY_BROKER_URL = ''
 
 TEMPLATES = [
     {
@@ -79,6 +82,9 @@ WSGI_APPLICATION = 'ptracker.wsgi.application'
 
 REST_FRAMEWORK = {
     'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     )
