@@ -7,6 +7,11 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ['user', 'item_title','url', 'requested_price', 'last_price', 'discounted_price']
+        extra_kwargs = {
+            "discounted_price": {
+                "required": False,
+            }
+        }
 
     
     def get_user(self, item):
