@@ -17,16 +17,26 @@ from tracker.serializers import ItemSerializer
 #     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+# class ItemApiView(generics.GenericAPIView):
+#     serializer_class = ItemSerializer
+
+#     def post(self, request):
+#         user = request.data
+#         serializer = self.serializer_class(data=user)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         user_data = serializer.data
+#         user_data['status_message'] = f"Your {user_data['item_title']} has been added"
+#         return Response(user_data, status=status.HTTP_201_CREATED)
+    
+
+
 class ItemApiView(generics.ListCreateAPIView):
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
     permission_classes = (IsAuthenticated,)
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        if Item.objects.filter(user=self.request.user, url=serializer.validated_data['url']).exists():
-            return Response({'error': 'This product is already being tracked'})
+    
+    def perform_create(self, serializer):
         serializer.save(user=self.request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
