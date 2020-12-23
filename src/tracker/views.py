@@ -38,7 +38,40 @@ class ItemApiView(generics.ListCreateAPIView):
     
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def create(self, request, *args, **kwargs):
+    #     serializer = self.get_serializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     if Item.objects.filter(user=self.request.user, url=serializer.validated_data['url']).exists():
+    #         return Response({'error': 'This product is already being tracked'})
+    #     url = serializer.validated_data['url']
+    #     crawled_data = get_data_from_jumia(url)
+    #     serializer.save(user=self.request.user)

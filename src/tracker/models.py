@@ -7,10 +7,10 @@ User = settings.AUTH_USER_MODEL
 
 class Item(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    item_title = models.CharField(max_length=300)
+    item_title = models.CharField(max_length=300, null=True, blank=True)
     url = models.URLField()
-    requested_price = models.FloatField()
-    last_price = models.FloatField()
+    requested_price = models.FloatField(default=0)
+    last_price = models.FloatField(null=True, blank=True)
     discounted_price = models.FloatField(null=True, blank=True)
 
     def amount_saved(self):
@@ -18,4 +18,4 @@ class Item(models.Model):
         return amount
 
     def __str__(self):
-        return f"{self.user.username}'s {self.item_title} tracks"
+        return f"{self.user.username}'s {self.item_title}"
