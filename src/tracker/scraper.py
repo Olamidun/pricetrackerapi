@@ -13,11 +13,3 @@ def get_data_from_jumia(url):
     except:
         return ValidationError('The Url you entered is not for jumia, please double check')
     return {"price": clean_price, "title": title}
-
-# get_data_from_jumia(url)
-
-    # User Agent = Mozilla/5.0
-
-# https://www.jumia.com.ng/fashion-mens-slip-on-sneakers-black-63622762.html
-
-# <h1 class="-fs20 -pts -pbxs">Panda 32" Inch LED TV, HD Ready</h1>

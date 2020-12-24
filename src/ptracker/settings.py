@@ -59,7 +59,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ptracker.urls'
 
-CELERY_BROKER_URL = ''
+CELERY_BROKER_URL = 'redis://localhost:6379'
 
 TEMPLATES = [
     {
@@ -139,3 +139,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+ broker_url = 'redis://localhost:6379'
+result_backend = 'redis://localhost:6379'
+accept_content = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+result_serializer = 'json'
+timezone = 'Africa/Lagos'
