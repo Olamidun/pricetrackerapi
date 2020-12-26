@@ -9,27 +9,6 @@ from tracker.serializers import ItemSerializer
 
 # Create your views here.
 
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def items(request):
-#     item = Item.objects.filter(user=request.user).all()
-#     serializer = ItemSerializer(item, many=True)
-#     return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-# class ItemApiView(generics.GenericAPIView):
-#     serializer_class = ItemSerializer
-
-#     def post(self, request):
-#         user = request.data
-#         serializer = self.serializer_class(data=user)
-#         serializer.is_valid(raise_exception=True)
-#         serializer.save()
-#         user_data = serializer.data
-#         user_data['status_message'] = f"Your {user_data['item_title']} has been added"
-#         return Response(user_data, status=status.HTTP_201_CREATED)
-    
-
 
 class ItemApiView(generics.ListCreateAPIView):
     serializer_class = ItemSerializer

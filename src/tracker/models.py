@@ -22,9 +22,9 @@ class Item(models.Model):
 
 
 
-class Test(models.Model):
-    name = models.CharField(max_length=300)
-    code = models.CharField(max_length=50)
+# class Test(models.Model):
+#     name = models.CharField(max_length=300)
+#     code = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
