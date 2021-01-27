@@ -1,4 +1,6 @@
 import time
+from django.core.mail import send_mail
+from django.conf import settings
 from celery import shared_task
 from django.core.exceptions import ValidationError
 from .models import Item
@@ -18,7 +20,12 @@ def track_for_discount():
             print(data)
 
             if last_price <= requested_price:
-                print('Yaaaay, there is a discount for you!!')
+                send_mail(
+                    'Yaay, there is a discount🥳',
+                    f'Dear {item.user.email}, it seems there is a discount for the item you are tracking, visit {item.url} to purchase it.',
+                    settings.EMAIL_HOST_USER,
+                    [item.user.email]
+                )
         except ValidationError:
             print('something went wrong, try again!!!!')
 

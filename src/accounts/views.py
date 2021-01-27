@@ -1,4 +1,7 @@
 from django.shortcuts import render
+
+# Create your views here.
+from django.shortcuts import render
 from  rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -30,6 +33,4 @@ def registration(request):
         return Response(user_data, status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
 
