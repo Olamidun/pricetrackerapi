@@ -7,7 +7,7 @@ class ItemSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField('get_user')
     class Meta:
         model = Item 
-        fields = ['user', 'item_title', 'item_image', 'url', 'requested_price', 'last_price', 'discounted_price']
+        fields = ['user', 'item_title', 'item_image_url', 'url', 'requested_price', 'last_price', 'discounted_price']
         extra_kwargs = {
             "discounted_price": {
                 "required": False,
@@ -32,7 +32,7 @@ class ItemSerializer(serializers.ModelSerializer):
         
         validated_data['last_price'] = jumia_data['price']
         validated_data['item_title'] = jumia_data['title']
-        validated_data['item_image'] = jumia_data['image']
+        validated_data['item_image_url'] = jumia_data['image']
         
 
 
@@ -42,6 +42,12 @@ class ItemSerializer(serializers.ModelSerializer):
             return item
         item = Item.objects.create(**validated_data)
         return item
+
+    
+    def update(self, instance, validated_data):
+        instance.requested_price = validated_data.get('requested_price', instance.requested_price)
+        instance.save()
+        return instance
     
     def get_user(self, item):
         user = item.user.username

@@ -22,8 +22,10 @@ class ItemApiView(generics.ListCreateAPIView):
         return self.queryset.filter(user=self.request.user)
 
 
-
-
+class SingleItemView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ItemSerializer
+    queryset = Item.objects.all()
+    permission_classes = (IsAuthenticated,)
 
 
 

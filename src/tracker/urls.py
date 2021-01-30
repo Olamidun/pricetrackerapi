@@ -5,5 +5,5 @@ app_name = 'tracker'
 
 urlpatterns = [
     path('', views.ItemApiView.as_view(), name='items'),
-    # path('new_item', views.CreateItemView.as_view(), name='new-item')
+    path('<int:pk>', views.SingleItemView.as_view(), name='single-item')
 ]
