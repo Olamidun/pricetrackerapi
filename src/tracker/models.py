@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -9,6 +10,8 @@ class Item(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     item_title = models.CharField(max_length=300, null=True, blank=True)
     url = models.URLField()
+    # item_image = models.CloudinaryField(upload_to="images", null=True, blank=True)
+    item_image = models.URLField(null=True, blank=True)
     requested_price = models.FloatField(default=0)
     last_price = models.FloatField(null=True, blank=True)
     discounted_price = models.FloatField(null=True, blank=True)

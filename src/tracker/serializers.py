@@ -7,7 +7,7 @@ class ItemSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField('get_user')
     class Meta:
         model = Item 
-        fields = ['user', 'item_title','url', 'requested_price', 'last_price', 'discounted_price']
+        fields = ['user', 'item_title', 'item_image', 'url', 'requested_price', 'last_price', 'discounted_price']
         extra_kwargs = {
             "discounted_price": {
                 "required": False,
@@ -29,8 +29,11 @@ class ItemSerializer(serializers.ModelSerializer):
             jumia_data = get_data_from_jumia(validated_data['url'])
         except:
             raise serializers.ValidationError({'error': "This URL does not exist, please check the url again."})
+        
         validated_data['last_price'] = jumia_data['price']
         validated_data['item_title'] = jumia_data['title']
+        validated_data['item_image'] = jumia_data['image']
+        
 
 
         if validated_data['last_price'] < validated_data['requested_price']:

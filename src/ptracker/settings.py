@@ -141,7 +141,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+
+# EMAIL CONFIGURATION
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
@@ -149,10 +153,17 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
-
+# REDIS CONFIGURATION
 broker_url = 'redis://localhost:6379'
 result_backend = 'redis://localhost:6379'
 accept_content = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 result_serializer = 'json'
 timezone = 'Africa/Lagos'
+
+# CLOUDINARY SETTINGS
+# cloudinary.config(
+#   cloud_name = os.environ.get('CLOUD_NAME'),
+#   api_key = os.environ.get('API_KEY'),
+#   api_secret = os.environ.get('API_SECRET')
+# )
