@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.conf import settings
 
 # Create your models here.
 class AccountManager(BaseUserManager):
@@ -50,3 +51,14 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile', null=True, blank=True)
+    notify_by_email = models.BooleanField(default=True)
+    notify_by_sms = models.BooleanField(default=False)
+    notify_by_whatsapp = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username

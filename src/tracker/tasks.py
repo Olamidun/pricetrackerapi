@@ -40,11 +40,4 @@ while True:
     time.sleep(15)
 
 
-    
-
-
-# @periodic_task(run_every=(crontab(minute='*/1')))
-# def run_create_test_object():
-#     create_test_object.delay('Kolapo', 'abcd123efg')
-
 
