@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Account
+from .models import Account, Profile
 from django.db.models.signals import pre_save
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -8,16 +8,6 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = ['username', 'email', 'phone_number', 'password']
-        
-
-        # def validate(self, data):
-        #     email = data['email']
-        #     username = data['username']
-        #     phone = data['phone_number']
-
-        #     if len(password) <= 5:
-        #         raise serializers.ValidationError({'Password Error': 'Your password mst be more than 5 characters'})
-        #     return data
         
         def create(self, validated_data):
             password_ = validated_data.get('password', None)
@@ -28,9 +18,21 @@ class RegisterSerializer(serializers.ModelSerializer):
             )
             return user
 
-        # # function to hash password
+        # function to hash password
         def create_hash(sender, instance=None, *args, **kwargs):
             passwd = instance.password
             instance.set_password(passwd)
 
         pre_save.connect(create_hash, sender=Account)
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField('get_username')
+    class Meta:
+        model = Profile
+        fields = ['user', 'notify_by_email', 'notify_by_sms', 'notify_by_whatsapp']
+
+        
+    def get_username(self, profile):
+        user = profile.user.username
+        return user

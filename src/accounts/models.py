@@ -60,5 +60,9 @@ class Profile(models.Model):
     notify_by_sms = models.BooleanField(default=False)
     notify_by_whatsapp = models.BooleanField(default=False)
 
+    @property
+    def username(self):
+        return self.user.username
+
     def __str__(self):
         return self.user.username

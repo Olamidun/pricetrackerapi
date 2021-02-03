@@ -5,12 +5,16 @@ from tracker.scraper import get_data_from_jumia
 
 class ItemSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField('get_user')
+    username = serializers.Field(source='user.username')
     class Meta:
         model = Item 
-        fields = ['user', 'item_title', 'item_image_url', 'url', 'requested_price', 'last_price', 'discounted_price']
+        fields = ['id', 'user', 'item_title', 'item_image_url', 'url', 'requested_price', 'last_price', 'discounted_price']
         extra_kwargs = {
             "discounted_price": {
                 "required": False,
+            },
+            'id':{
+                "read_only": True
             }
         }
     
@@ -52,3 +56,5 @@ class ItemSerializer(serializers.ModelSerializer):
     def get_user(self, item):
         user = item.user.username
         return user
+
+

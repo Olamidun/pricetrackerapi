@@ -21,6 +21,7 @@ def track_for_discount():
                 item.last_price = last_price
                 item.save()
                 requested_price = item.requested_price
+
                 # print(data)
 
                 if last_price <= requested_price:
