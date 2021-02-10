@@ -30,7 +30,7 @@ def track_for_discount():
                     subject = f'Dear {item.user.username}, there is a discount of {item.discounted_price} for the {item.title} you are tracking, visit {item.url} to purchase it.'
                     send_mail(
                         'Yaay, there is a discount🥳',
-                        ,
+                        subject,
                         settings.EMAIL_HOST_USER,
                         [item.user.email]
                     )
