@@ -15,6 +15,8 @@ class Item(models.Model):
     last_price = models.FloatField(null=True, blank=True)
     discounted_price = models.FloatField(null=True, blank=True)
     scrape = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+
 
     def amount_saved(self):
         amount = self.last_price - self.discounted_price
