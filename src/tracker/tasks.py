@@ -5,7 +5,6 @@ from celery import shared_task
 from django.core.exceptions import ValidationError
 from .models import Item
 from .scraper import get_data_from_jumia
-from accounts.models import Profile
 
 
 @shared_task
@@ -27,7 +26,7 @@ def track_for_discount():
 
                 if last_price <= requested_price:
                     item.discounted_price = item.discount
-                    subject = f'Dear {item.user.username}, there is a discount of {item.discounted_price} for the {item.title} you are tracking, visit {item.url} to purchase it.'
+                    subject = f'Dear {item.user.username}, there is a discount of {item.discounted_price} for the {item.item_title} you are tracking, visit {item.url} to purchase it. Thanks for using our platform'
                     send_mail(
                         'Yaay, there is a discount🥳',
                         subject,

@@ -25,7 +25,7 @@ class Item(models.Model):
         else:
             discunt_amount = 0
 
-        return amount
+        return discount_amount
 
     def __str__(self):
         return f"{self.user.username}'s {self.item_title}"
