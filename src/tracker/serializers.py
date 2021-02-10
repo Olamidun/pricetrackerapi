@@ -44,6 +44,7 @@ class ItemSerializer(serializers.ModelSerializer):
             return item
         item = Item.objects.create(**validated_data)
         item.scrape = True
+        item.discount_price = item.discount
         item.save()
         return item
 
@@ -51,8 +52,7 @@ class ItemSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.requested_price = validated_data.get('requested_price', instance.requested_price)
 
-        if instance.last_price <= instance.requested_price:
-            instance.discounted_price = instance.requested_price - instance.last_price
+        instance.discounted_price = instance.discount
         instance.scrape = validated_data.get('scrape', instance.scrape)
         instance.save()
         return instance

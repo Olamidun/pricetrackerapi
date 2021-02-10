@@ -54,13 +54,13 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile', null=True, blank=True)
-    notify_by_email = models.BooleanField(default=True)
+# class Profile(models.Model):
+#     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile', null=True, blank=True)
+#     notify_by_email = models.BooleanField(default=True)
 
-    @property
-    def username(self):
-        return self.user.username
+#     @property
+#     def username(self):
+#         return self.user.username
 
-    def __str__(self):
-        return self.user.username
+#     def __str__(self):
+#         return self.user.username

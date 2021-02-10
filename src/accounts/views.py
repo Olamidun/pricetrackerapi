@@ -3,8 +3,7 @@ from  rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
-from .serializers import RegisterSerializer, ProfileSerializer
-from .models import Profile
+from .serializers import RegisterSerializer
 
 # Create your views here.
 
@@ -20,18 +19,18 @@ def registration(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ProfileView(generics.RetrieveUpdateAPIView):
-    serializer_class = ProfileSerializer
-    permission_classes = (IsAuthenticated, )
+# class ProfileView(generics.RetrieveUpdateAPIView):
+#     serializer_class = ProfileSerializer
+#     permission_classes = (IsAuthenticated, )
 
-    def get_queryset(self):
-        qs = Profile.objects.all()
-        logged_in_user_profile = qs.filter(user=self.request.user)
-        return logged_in_user_profile
+#     def get_queryset(self):
+#         qs = Profile.objects.all()
+#         logged_in_user_profile = qs.filter(user=self.request.user)
+#         return logged_in_user_profile
 
-    def get_object(self):
-        queryset = self.get_queryset()
-        obj = get_object_or_404(queryset, user=self.request.user)
-        return obj
+#     def get_object(self):
+#         queryset = self.get_queryset()
+#         obj = get_object_or_404(queryset, user=self.request.user)
+#         return obj
          
 

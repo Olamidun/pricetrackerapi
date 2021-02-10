@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Account, Profile
+from .models import Account
 from django.db.models.signals import pre_save
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -26,13 +26,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         pre_save.connect(create_hash, sender=Account)
 
 
-class ProfileSerializer(serializers.ModelSerializer):
-    user = serializers.SerializerMethodField('get_username')
-    class Meta:
-        model = Profile
-        fields = ['user', 'notify_by_email', 'notify_by_sms', 'notify_by_whatsapp']
+# class ProfileSerializer(serializers.ModelSerializer):
+#     user = serializers.SerializerMethodField('get_username')
+#     class Meta:
+#         model = Profile
+#         fields = ['user', 'notify_by_email', 'notify_by_sms', 'notify_by_whatsapp']
 
         
-    def get_username(self, profile):
-        user = profile.user.username
-        return user
+#     def get_username(self, profile):
+#         user = profile.user.username
+#         return user

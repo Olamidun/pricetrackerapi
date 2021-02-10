@@ -18,18 +18,15 @@ class Item(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
 
-    def amount_saved(self):
-        amount = self.last_price - self.discounted_price
+    @property
+    def discount(self):
+        if self.last_price <= self.requested_price:
+            discount_amount = self.requested_price - self.last_price
+        else:
+            discunt_amount = 0
+
         return amount
 
     def __str__(self):
         return f"{self.user.username}'s {self.item_title}"
 
-
-
-# class Test(models.Model):
-#     name = models.CharField(max_length=300)
-#     code = models.CharField(max_length=50)
-
-#     def __str__(self):
-#         return self.name
