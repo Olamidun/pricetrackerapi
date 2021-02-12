@@ -9,8 +9,8 @@ from accounts.models import Profile
 from .scraper import get_data_from_jumia
 
 def send_sms():
-    account_sid = 'AC6c18cd77fd4da2d392f3acdbe8c49808'
-    auth_token = '2a2edc0f990a4e98bf8655af4b8117e0'
+    account_sid = 'AC6c18cd77fd4da2d392f3acdbe8c49808' #Just a test account_sid, it is no longer valid, the new one will be put in a .env file when deploying
+    auth_token = '2a2edc0f990a4e98bf8655af4b8117e0' #Just a test auth_token, it is no longer valid, the new one will be put in a .env file when deploying
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
