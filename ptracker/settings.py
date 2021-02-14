@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -168,3 +169,6 @@ accept_content = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 result_serializer = 'json'
 timezone = 'Africa/Lagos'
+
+
+django_heroku.settings(locals())
