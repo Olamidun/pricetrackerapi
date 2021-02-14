@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -61,7 +64,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ptracker.urls'
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
 
 TEMPLATES = [
     {
@@ -154,16 +157,9 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
 # REDIS CONFIGURATION
-broker_url = 'redis://localhost:6379'
-result_backend = 'redis://localhost:6379'
-accept_content = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-result_serializer = 'json'
-timezone = 'Africa/Lagos'
-
-# CLOUDINARY SETTINGS
-# cloudinary.config(
-#   cloud_name = os.environ.get('CLOUD_NAME'),
-#   api_key = os.environ.get('API_KEY'),
-#   api_secret = os.environ.get('API_SECRET')
-# )
+broker_url = os.getenv('BROKER_URL')
+result_backend = os.getenv('RESULT_BACKEND')
+accept_content = os.getenv('ACCEPT_CONTENT')
+CELERY_TASK_SERIALIZER = os.getenv('CELERY_TASK_SERIALIZER')
+result_serializer = os.getenv('RESULT_SERIALIZER')
+timezone = os.getenv('TIMEZONE')
