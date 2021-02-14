@@ -8,9 +8,6 @@ from django.core.exceptions import ValidationError
 from .models import Item
 # from accounts.models import Profile
 from .scraper import get_data_from_jumia
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # def send_sms(_name, _price, _title, _url, phone):
 #     formatted_phone_number = str(phone)
@@ -35,8 +32,6 @@ def send_email(name, price, title, item_url, _email):
         settings.EMAIL_HOST_USER,
         [_email]
     )
-
-
 
 @shared_task
 def track_for_discount():
