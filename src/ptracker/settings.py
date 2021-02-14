@@ -24,12 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xythiuy5w^_m1#opep6r)6dk%92o@6ore##-+l!^s4f*mudo98'
+# SECRET_KEY = 'xythiuy5w^_m1#opep6r)6dk%92o@6ore##-+l!^s4f*mudo98'
+
+ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost:8000', 'trakkkr.herokuapp.com']
 
 
 # Application definition
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'tracker.apps.TrackerConfig',
+    'corsheaders',
 
     # installed apps
     'rest_framework',
@@ -138,6 +141,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+CORS_ALLOWED_ALL_ORIGINS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -158,9 +162,9 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
 # REDIS CONFIGURATION
-broker_url = os.getenv('BROKER_URL')
+broker_url = os.getenv('CELERY_BROKER_URL')
 result_backend = os.getenv('RESULT_BACKEND')
-accept_content = os.getenv('ACCEPT_CONTENT')
-CELERY_TASK_SERIALIZER = os.getenv('CELERY_TASK_SERIALIZER')
-result_serializer = os.getenv('RESULT_SERIALIZER')
-timezone = os.getenv('TIMEZONE')
+accept_content = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+result_serializer = 'json'
+timezone = 'Africa/Lagos'
