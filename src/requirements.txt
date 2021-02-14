@@ -13,6 +13,7 @@ click-repl==0.1.6
 cloudinary==1.24.0
 Django==3.1.1
 djangorestframework==3.11.1
+gunicorn==20.0.4
 idna==2.10
 importlib-metadata==3.3.0
 kombu==5.0.2
