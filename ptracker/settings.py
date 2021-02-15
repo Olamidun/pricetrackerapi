@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import django_heroku
 from dotenv import load_dotenv
+# import dj_database_url
 
 load_dotenv()
 
@@ -95,6 +96,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     )
 }
 
