@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from  rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework.decorators import authentication_classes
+from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from .serializers import RegisterSerializer
 
@@ -10,7 +10,7 @@ from .serializers import RegisterSerializer
 
 
 @api_view(['POST'])
-@authentication_classes(())
+@permission_classes(())
 def registration(request):
     serializer = RegisterSerializer(data=request.data)
     if serializer.is_valid():
