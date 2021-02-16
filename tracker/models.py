@@ -20,10 +20,9 @@ class Item(models.Model):
 
     @property
     def discount(self):
+        discount_amount = 0
         if self.last_price <= self.requested_price:
-            discount_amount = self.requested_price - self.last_price
-        else:
-            discunt_amount = 0
+            discount_amount += self.requested_price - self.last_price
 
         return discount_amount
 
