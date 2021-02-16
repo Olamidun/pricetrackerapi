@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import redis
 import django_heroku
 import dj_database_url
 from dotenv import load_dotenv
@@ -69,8 +70,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ptracker.urls'
 
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+# CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
 
+CELERY_BROKER_URL = redis.from_url(os.environ.get("REDIS_URL"))
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -170,8 +172,8 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
 # REDIS CONFIGURATION
-broker_url = os.getenv('CELERY_BROKER_URL')
-result_backend = os.getenv('RESULT_BACKEND')
+broker_url = redis.from_url(os.environ.get("REDIS_URL"))
+result_backend = redis.from_url(os.environ.get("REDIS_URL"))
 accept_content = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 result_serializer = 'json'
