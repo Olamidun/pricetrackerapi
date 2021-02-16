@@ -173,7 +173,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
+
 # REDIS CONFIGURATION
+
 broker_url = redis.from_url(os.environ.get("REDIS_URL"))
 result_backend = redis.from_url(os.environ.get("REDIS_URL"))
 accept_content = ['application/json']
