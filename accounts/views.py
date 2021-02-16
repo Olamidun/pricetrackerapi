@@ -19,6 +19,7 @@ def registration(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+
 # class ProfileView(generics.RetrieveUpdateAPIView):
 #     serializer_class = ProfileSerializer
 #     permission_classes = (IsAuthenticated, )
