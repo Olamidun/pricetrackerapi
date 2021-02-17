@@ -22,6 +22,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         def create_hash(sender, instance=None, *args, **kwargs):
             passwd = instance.password
             instance.set_password(passwd)
+            # instance.save()
 
         pre_save.connect(create_hash, sender=Account)
 
