@@ -26,7 +26,7 @@ class ItemSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = self.get_logged_in_user()
         if Item.objects.filter(user=user, url=validated_data['url']).exists():
-            raise serializers.ValidationError({'error': "This URL already exist, you do not have to add it again, the website is already tracking the item for you."})
+            raise serializers.ValidationError({'error': "This URL already exist, you do not have to add it again; the platform is already tracking the item for you."})
 
         try:
             jumia_data = get_data_from_jumia(validated_data['url'])
@@ -40,8 +40,6 @@ class ItemSerializer(serializers.ModelSerializer):
 
         if validated_data['last_price'] < validated_data['requested_price']:
             validated_data['discounted_price'] = validated_data['requested_price'] - validated_data['last_price']
-            item = Item.objects.create(**validated_data)
-            return item
         item = Item.objects.create(**validated_data)
         item.scrape = True
         item.discount_price = item.discount
