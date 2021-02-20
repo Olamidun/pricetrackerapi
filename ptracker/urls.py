@@ -25,7 +25,7 @@ load_dotenv()
 admin_url = os.getenv('ADMIN_URL')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(f'{admin_url}/', admin.site.urls),
     path('', include('tracker.urls')),
     path('user/', include('accounts.urls'))
 ]
