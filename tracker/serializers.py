@@ -42,7 +42,7 @@ class ItemSerializer(serializers.ModelSerializer):
             validated_data['discounted_price'] = validated_data['requested_price'] - validated_data['last_price']
         item = Item.objects.create(**validated_data)
         item.scrape = True
-        item.discount_price = item.discount
+        item.discounted_price = item.discount
         item.save()
         return item
 
