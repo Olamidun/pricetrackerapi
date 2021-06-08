@@ -198,8 +198,6 @@ timezone = 'Africa/Lagos'
 # result_backend = 'redis://localhost:6379'
 # accept_content = ['application/json']
 # CELERY_TASK_SERIALIZER = 'json'
-# result_serializer = 'json'
-# timezone = 'Africa/Lagos'
 
 
 django_heroku.settings(locals())
