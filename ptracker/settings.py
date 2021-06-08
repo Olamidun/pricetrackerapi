@@ -32,8 +32,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.getenv('DEBUG_VALUE') == 'True')
-# DEBUG = True
+# DEBUG = (os.getenv('DEBUG_VALUE') == 'True')
+DEBUG = True
 
 # print(DEBUG)
 
@@ -194,10 +194,12 @@ CELERY_TASK_SERIALIZER = 'json'
 result_serializer = 'json'
 timezone = 'Africa/Lagos'
 
-# broker_url = 'redis://localhost:6379'
-# result_backend = 'redis://localhost:6379'
+# broker_url = 'redis://:p08f55aa543743525e2fc72e30d06db40d6b8aad70ed31c73069709b49aeadffd@ec2-54-237-139-27.compute-1.amazonaws.com:229399'
+# result_backend = 'redis://:p08f55aa543743525e2fc72e30d06db40d6b8aad70ed31c73069709b49aeadffd@ec2-54-237-139-27.compute-1.amazonaws.com:229399'
 # accept_content = ['application/json']
 # CELERY_TASK_SERIALIZER = 'json'
+# result_serializer = 'json'
+# timezone = 'Africa/Lagos'
 
 
 django_heroku.settings(locals())
