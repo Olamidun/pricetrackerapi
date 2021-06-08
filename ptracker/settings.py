@@ -33,7 +33,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.getenv('DEBUG_VALUE') == 'True')
-# DEBUG = (os.getenv('DEBUG') == 'True')
+# DEBUG = True
 
 # print(DEBUG)
 
@@ -193,6 +193,13 @@ accept_content = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 result_serializer = 'json'
 timezone = 'Africa/Lagos'
+
+# broker_url = 'redis://localhost:6379'
+# result_backend = 'redis://localhost:6379'
+# accept_content = ['application/json']
+# CELERY_TASK_SERIALIZER = 'json'
+# result_serializer = 'json'
+# timezone = 'Africa/Lagos'
 
 
 django_heroku.settings(locals())
