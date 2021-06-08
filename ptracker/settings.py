@@ -187,19 +187,19 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 
 # REDIS CONFIGURATION
 
-broker_url = redis.from_url(os.environ.get("REDIS_URL"))
-result_backend = redis.from_url(os.environ.get("REDIS_URL"))
-accept_content = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-result_serializer = 'json'
-timezone = 'Africa/Lagos'
-
-# broker_url = 'redis://:p08f55aa543743525e2fc72e30d06db40d6b8aad70ed31c73069709b49aeadffd@ec2-54-237-139-27.compute-1.amazonaws.com:229399'
-# result_backend = 'redis://:p08f55aa543743525e2fc72e30d06db40d6b8aad70ed31c73069709b49aeadffd@ec2-54-237-139-27.compute-1.amazonaws.com:229399'
+# broker_url = redis.from_url(os.environ.get("REDIS_URL"))
+# result_backend = redis.from_url(os.environ.get("REDIS_URL"))
 # accept_content = ['application/json']
 # CELERY_TASK_SERIALIZER = 'json'
 # result_serializer = 'json'
 # timezone = 'Africa/Lagos'
+
+broker_url = 'redis://:p08f55aa543743525e2fc72e30d06db40d6b8aad70ed31c73069709b49aeadffd@ec2-54-237-139-27.compute-1.amazonaws.com:22940'
+result_backend = 'redis://:p08f55aa543743525e2fc72e30d06db40d6b8aad70ed31c73069709b49aeadffd@ec2-54-237-139-27.compute-1.amazonaws.com:22940'
+accept_content = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+result_serializer = 'json'
+timezone = 'Africa/Lagos'
 
 
 django_heroku.settings(locals())
