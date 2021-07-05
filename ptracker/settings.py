@@ -164,7 +164,9 @@ DATABASES['default'].update(db_from_env)
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -194,8 +196,15 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
 # result_serializer = 'json'
 # timezone = 'Africa/Lagos'
 
-broker_url = 'redis://:p08f55aa543743525e2fc72e30d06db40d6b8aad70ed31c73069709b49aeadffd@ec2-54-237-139-27.compute-1.amazonaws.com:22940'
-result_backend = 'redis://:p08f55aa543743525e2fc72e30d06db40d6b8aad70ed31c73069709b49aeadffd@ec2-54-237-139-27.compute-1.amazonaws.com:22940'
+# broker_url = 'redis://:p08f55aa543743525e2fc72e30d06db40d6b8aad70ed31c73069709b49aeadffd@ec2-54-237-139-27.compute-1.amazonaws.com:22940'
+# result_backend = 'redis://:p08f55aa543743525e2fc72e30d06db40d6b8aad70ed31c73069709b49aeadffd@ec2-54-237-139-27.compute-1.amazonaws.com:22940'
+# accept_content = ['application/json']
+# CELERY_TASK_SERIALIZER = 'json'
+# result_serializer = 'json'
+# timezone = 'Africa/Lagos'
+
+broker_url = 'redis://localhost:6379'
+result_backend = 'redis://localhost:6379'
 accept_content = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 result_serializer = 'json'

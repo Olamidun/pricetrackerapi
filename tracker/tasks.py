@@ -24,7 +24,7 @@ from .scraper import get_data_from_jumia
 
 
 def send_email(name, price, title, item_url, _email):
-    subject = f'Dear {name}, \n\n There is a discount of NGN{price} for the {title} you are tracking, visit {item_url} to purchase it. \n\nThank you for using our platform. \n\n Regards, \nTrakkkr Team.'
+    subject = f'Dear {name}, \n\n There is a discount of NGN{price} for the {title} you are tracking. Visit {item_url} to purchase it. \n\nThank you for using our platform. \n\n Regards, \nTrakkkr Team.'
     send_mail(
         'Yaay, there is a discount🥳',
         subject,
