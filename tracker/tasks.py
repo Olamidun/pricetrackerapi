@@ -35,7 +35,7 @@ def track_for_discount():
 
                 if last_price <= requested_price:
                     item.discounted_price = item.discount
-                    send_email(item.user.usernam e, item.discounted_price, item.item_title, item.url, item.user.email)
+                    send_email(item.user.username, item.discounted_price, item.item_title, item.url, item.user.email)
                        
                     item.scrape = False
                     item.save()
