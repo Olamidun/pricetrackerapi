@@ -46,4 +46,6 @@ def track_for_discount():
             print('something went wrong, try again!!!!')
 
 
-
+while True:
+    track_for_discount()
+    time.sleep(30)

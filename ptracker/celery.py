@@ -17,10 +17,10 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # Load task modules from all registered Django app configs.
 app.autodiscover_tasks()
 
-app.conf.beat_schedule = {
-    'track-price-every-one-min': {
-        'task': 'tracker.tasks.track_for_discount',
-        'schedule': crontab(minute="*")
-    }
-}
+# app.conf.beat_schedule = {
+#     'track-price-every-one-min': {
+#         'task': 'tracker.tasks.track_for_discount',
+#         'schedule': crontab(minute="*")
+#     }
+# }
 
