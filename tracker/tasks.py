@@ -3,12 +3,14 @@ import time
 from django.core.mail import send_mail
 from django.conf import settings
 from celery import shared_task
+from ptracker.celery import app
 from django.core.exceptions import ValidationError
 from .models import Item
 # from accounts.models import Profile
 from .scraper import get_data_from_jumia
 
 
+@app.task
 def send_email(name, price, title, item_url, _email):
     subject = f'Dear {name}, \n\n There is a discount of NGN{price} for the {title} you are tracking. Visit {item_url} to purchase it. \n\nThank you for using our platform. \n\n Regards, \nTrakkkr Team.'
     send_mail(
@@ -18,7 +20,7 @@ def send_email(name, price, title, item_url, _email):
         [_email]
     )
 
-@shared_task
+@app.task
 def track_for_discount():
     items = Item.objects.all()
     for item in items:
@@ -36,6 +38,7 @@ def track_for_discount():
                 if last_price <= requested_price:
                     item.discounted_price = item.discount
                     send_email(item.user.username, item.discounted_price, item.item_title, item.url, item.user.email)
+                    print("Email Sent")
                        
                     item.scrape = False
                     item.save()
