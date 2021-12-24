@@ -48,4 +48,4 @@ def track_for_discount():
 
 while True:
     track_for_discount()
-    time.sleep(30)
+    time.sleep(5)
