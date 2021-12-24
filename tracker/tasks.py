@@ -10,7 +10,7 @@ from .models import Item
 from .scraper import get_data_from_jumia
 
 
-@app.task
+@shared_task
 def send_email(name, price, title, item_url, _email):
     subject = f'Dear {name}, \n\n There is a discount of NGN{price} for the {title} you are tracking. Visit {item_url} to purchase it. \n\nThank you for using our platform. \n\n Regards, \nTrakkkr Team.'
     send_mail(
@@ -20,7 +20,7 @@ def send_email(name, price, title, item_url, _email):
         [_email]
     )
 
-@app.task
+@shared_task
 def track_for_discount():
     items = Item.objects.all()
     for item in items:
